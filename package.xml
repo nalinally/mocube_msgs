@@ -5,12 +5,10 @@
   <version>0.0.0</version>
 
   <description>
-    Message definitions for AtomS3 KRS ROS UDP bridge
+    Message definitions for atom_krs_ros_udp_bridge (mocube modules)
   </description>
 
-  <maintainer email="your_email@example.com">
-    obamanarito
-  </maintainer>
+  <maintainer email="obama1632@gmail.com">obamanarito</maintainer>
 
   <license>Apache-2.0</license>
 

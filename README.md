@@ -26,7 +26,8 @@ ServoCommands                 /servo_commands (device_manager が購読)
     ├── int32 module_id       送り先の Module.id
     ├── int32 servo           ICS ID 0..5、または ALL_SERVOS (-1)
     ├── uint8 mode            FREE (0) / POSITION (1)
-    └── int32 position        POSITION のときの目標 3500..11500 (中央 7500)。FREE では無視
+    └── float64 angle         POSITION のときの角度 [deg] -135..135 (0 が中央)。FREE では無視
+                              回転モードのサーボでは速さと向き (0 で停止)
 ```
 
 `ServoCommand` 1 つが UDP パケット `KRS,...` 1 つになります。`ALL_SERVOS` は `FREE` のときだけ使えます。

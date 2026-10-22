@@ -10,6 +10,8 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/IrReceiver.msg"
   "msg/Module.msg"
   "msg/Modules.msg"
+  "msg/ServoCommand.msg"
+  "msg/ServoCommands.msg"
 )
 
 ament_export_dependencies(rosidl_default_runtime)

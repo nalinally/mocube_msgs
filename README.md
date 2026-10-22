@@ -1,7 +1,7 @@
 # mocube_msgs
 
 mocube の UDP ブリッジ ([mocube_bridge](https://github.com/nalinally/mocube_bridge)) が使うメッセージ定義です。
-`device_manager` ノードが `/modules` に `Modules` を publish します。
+`device_manager` ノードが `/modules` に `Modules` を publish し、`/servo_commands` の `ServoCommands` を購読します。
 
 ## 構造
 
@@ -19,6 +19,18 @@ Modules
         ├── int32 address     その面で最後に見えた隣のモジュールの ID
         └── float64 t         その受信時刻 (UNIX time [s])
 ```
+
+```
+ServoCommands                 /servo_commands (device_manager が購読)
+└── ServoCommand[] commands   先頭から順にモジュールへ送られる
+    ├── int32 module_id       送り先の Module.id
+    ├── int32 servo           ICS ID 0..5、または ALL_SERVOS (-1)
+    ├── uint8 mode            FREE (0) / POSITION (1)
+    └── int32 position        POSITION のときの目標 3500..11500 (中央 7500)。FREE では無視
+```
+
+`ServoCommand` 1 つが UDP パケット `KRS,...` 1 つになります。`ALL_SERVOS` は `FREE` のときだけ使えます。
+範囲外の指令は device_manager が warning を出して捨てます (モジュールには送られません)。
 
 `Vector2` は定義だけで現在は未使用です。
 

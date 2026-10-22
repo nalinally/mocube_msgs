@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <package format="3">
 
-  <name>atom_krs_ros_udp_bridge_msg</name>
+  <name>mocube_msgs</name>
   <version>0.0.0</version>
 
   <description>
-    Message definitions for atom_krs_ros_udp_bridge (mocube modules)
+    Message definitions for mocube_bridge (mocube modules)
   </description>
 
   <maintainer email="obama1632@gmail.com">obamanarito</maintainer>

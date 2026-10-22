@@ -1,6 +1,6 @@
-# atom_krs_ros_udp_bridge_msg
+# mocube_msgs
 
-mocube の UDP ブリッジ ([atom_krs_ros_udp_bridge](https://github.com/nalinally/atom_krs_ros_udp_bridge)) が使うメッセージ定義です。
+mocube の UDP ブリッジ ([mocube_bridge](https://github.com/nalinally/mocube_bridge)) が使うメッセージ定義です。
 `device_manager` ノードが `/modules` に `Modules` を publish します。
 
 ## 構造
@@ -35,7 +35,7 @@ Modules
 ## フィールドを追加するとき
 
 1. `msg/*.msg` を編集 (新しいファイルなら `CMakeLists.txt` の `rosidl_generate_interfaces` にも追加)
-2. `atom_krs_ros_udp_bridge` の `device_registry.Device` に状態を足し、`device_manager.to_modules_msg()` で詰める
+2. `mocube_bridge` の `device_registry.Device` に状態を足し、`device_manager.to_modules_msg()` で詰める
 3. `colcon build` (msg パッケージ → ブリッジの順に再ビルドされる)
 
 メッセージ定義を変えたら、`/modules` を購読している側も再ビルドが必要です。

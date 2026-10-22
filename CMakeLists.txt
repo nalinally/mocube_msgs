@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.8)
 
-project(atom_krs_ros_udp_bridge_msg)
+project(mocube_msgs)
 
 find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)

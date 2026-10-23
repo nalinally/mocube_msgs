@@ -33,6 +33,24 @@ ServoCommands                 /servo_commands (device_manager が購読)
 `ServoCommand` 1 つが UDP パケット `KRS,...` 1 つになります。`ALL_SERVOS` は `FREE` のときだけ使えます。
 範囲外の指令は device_manager が warning を出して捨てます (モジュールには送られません)。
 
+```
+ModuleStates                  /module_states (mocube_estimator が publish)
+├── float64 t                 publish 時刻 (UNIX time [s])
+└── ModuleState[] modules     ID 順
+    ├── int32 id              Module.id
+    ├── bool localized        位置が決まっているか。false なら以下は無意味
+    ├── geometry_msgs/Point position  連続位置 [m] (サーボ指令から積算し、赤外線で補正)
+    ├── int32 grid_x/y/z      最後に赤外線か手動設定で確定した格子座標
+    └── float64 grid_t        その確定時刻 (UNIX time [s])
+
+srv/SetGridPositions          /set_grid_positions (mocube_estimator のサービス)
+├── GridPosition[] positions  指定したモジュールを格子座標に置き直す (id, x, y, z)
+└── --- bool success, string message
+```
+
+座標の軸は全モジュール共通で、r 面 = +x, f 面 = +y, u 面 = +z、ID0 が原点です
+(詳しくは [mocube_estimator](https://github.com/nalinally/mocube_estimator) の README)。
+
 `Vector2` は定義だけで現在は未使用です。
 
 ## 値の読み方

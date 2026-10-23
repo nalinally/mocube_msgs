@@ -1,0 +1,7 @@
+# モジュールの位置を格子座標で上書きする (赤外線の認識ミスを手で直す用)
+# 指定したモジュールだけを動かし、ほかはそのまま
+
+GridPosition[] positions
+---
+bool success
+string message

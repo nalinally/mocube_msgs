@@ -70,3 +70,8 @@ srv/SetGridPositions          /set_grid_positions (mocube_estimator のサービ
 3. `colcon build` (msg パッケージ → ブリッジの順に再ビルドされる)
 
 メッセージ定義を変えたら、`/modules` を購読している側も再ビルドが必要です。
+
+## action `ExecuteMove`
+
+変形の 1 手を実行します。`mocube_planner` の `plan_executor` が送り、`mocube_executor` の `move_server` が実行します。
+各フィールドの意味は `action/ExecuteMove.action` にあります。

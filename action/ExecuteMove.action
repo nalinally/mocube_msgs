@@ -1,0 +1,23 @@
+# 1 手を実行する。mocube_planner の plan_executor が送り、mocube_executor の move_server が実行する
+# ID はどれも実機の ID。サーバは手をまたぐ状態を持たないので、判断に必要なものをすべて載せる
+
+int32 module                              # 動くモジュール
+mocube_msgs/GridPosition[] before         # 手の前の全モジュールの格子座標
+mocube_msgs/GridPosition[] after          # 手の後の全モジュールの格子座標
+mocube_msgs/ServoCommand[] commands       # 回すサーボと回転指令 (mode は POSITION)
+float64 duration_s                        # 計画上の手の時間。回し続けてよい時間の上限の計算に使う
+float64 edge_length_mm                    # 計画を作ったときの値。サーバの設定と違えば実行しない
+float64 speed_gain_mm                     # 同上
+---
+uint8 SUCCEEDED=0
+uint8 PRECONDITION_FAILED=1               # サーボを回す前に断った (形が違う、設定が違う、揃わない)
+uint8 FAILED=2                            # 回したが確認が取れなかった。全サーボは止めてある
+uint8 CANCELED=3                          # キャンセルされた。全サーボは止めてある
+uint8 CLIENT_LOST=4                       # クライアントが消えたので止めた
+
+uint8 outcome
+string message
+mocube_msgs/ModuleState[] final_states    # 終了時の全モジュールの推定位置 (再計画に使える)
+---
+string status                             # waiting / driving / returning / verifying
+float64 progress_cells                    # 動くモジュールが手の向きに進んだ量 [マス]
